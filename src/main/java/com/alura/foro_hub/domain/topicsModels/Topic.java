@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+
 public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +24,7 @@ public class Topic {
     private String message;
     private LocalDateTime date_topic;
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private statusTopic statusTopic;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="author_id")
@@ -34,13 +35,13 @@ public class Topic {
     public Topic(
             String title,
             String message,
-            Status status_topic,
+            statusTopic statusTopic_topic,
             User author,
             String course_name
     ){
         this.title = title;
         this.message = message;
-        this.status = status_topic;
+        this.statusTopic = statusTopic_topic;
         this.author = author;
         this.course_name = course_name;
         this.date_topic =LocalDateTime.now();

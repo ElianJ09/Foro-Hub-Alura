@@ -3,6 +3,10 @@ package com.alura.foro_hub.domain.topicsModels.servicesTopics;
 import com.alura.foro_hub.domain.repositories.topicRepository;
 import com.alura.foro_hub.domain.repositories.userRepository;
 import com.alura.foro_hub.domain.topicsModels.Topic;
+import com.alura.foro_hub.domain.topicsModels.createDataTopic;
+import com.alura.foro_hub.domain.topicsModels.servicesTopics.validations.topicValidation;
+import com.alura.foro_hub.domain.topicsModels.topicDataDetails;
+import com.alura.foro_hub.infra.errors.integrityValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,27 +19,23 @@ public class crudTopicService {
     @Autowired
     private userRepository userRepository;
     @Autowired
-    List<ValidadorDeTopicos> validadores;
-    /*
-    @Autowired
-    List<ValidadorCancelamientoDeConsulta> validadoresCancelamiento;
-     */
+    List<topicValidation> validations;
 
-    public DatosDetalleTopico crear(DatosCrearTopico datos){
-        if(datos.idUsuario()!=null&&!userRepository.existsById(datos.idUsuario())){
-            throw new ValidacionDeIntegridad("Id de usuario no encontrado");
+    public topicDataDetails createNewTopic(createDataTopic data){
+        if(data.id()!=null&&!userRepository.existsById(data.id())){
+            throw new integrityValidation("User not found!");
         }
-        validadores.forEach(v->v.validar(datos));
-        var usuario = userRepository.findById(datos.idUsuario()).get();
-        var topico = new Topic(
-                datos.titulo(),
-                datos.mensaje(),
-                datos.status(),
-                usuario,
-                datos.nombreCurso()
+        validations.forEach(validation->validation.validate(data));
+        var user = userRepository.findById(data.id() != null ? data.id() : null).get();
+        var topic = new Topic(
+                data.title(),
+                data.message(),
+                data.status(),
+                user,
+                data.course_Name()
         );
-        topicRepository.save(topico);
-        return new DatosDetalleTopico(topico);
+        topicRepository.save(topic);
+        return new topicDataDetails(topic);
     }
 
 

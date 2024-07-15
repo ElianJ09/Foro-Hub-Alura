@@ -1,5 +1,7 @@
 package com.alura.foro_hub.controllers;
 
+import com.alura.foro_hub.domain.topicsModels.createDataTopic;
+import com.alura.foro_hub.domain.topicsModels.servicesTopics.crudTopicService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +27,11 @@ public class topicController {
             description = "We need Author, tittle and more!",
             tags = {"post"}
     )
-    public ResponseEntity crear(@RequestBody @Valid DatosCrearTopico data,
+    public ResponseEntity createTopic(@RequestBody @Valid createDataTopic data,
                                 UriComponentsBuilder uriComponentsBuilder){
-        var response = crudTopicoService.crear(data);
+        var response = crudTopicService.createTopic(data);
 
-        URI url = uriComponentsBuilder.path("/topicos/{id}").buildAndExpand(response.id()).toUri();
+        URI url = uriComponentsBuilder.path("/topics/{id}").buildAndExpand(response.id()).toUri();
         return ResponseEntity.created(url).body(data);
 
     }

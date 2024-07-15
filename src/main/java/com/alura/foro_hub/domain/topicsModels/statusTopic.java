@@ -1,6 +1,6 @@
 package com.alura.foro_hub.domain.topicsModels;
 
-public enum Status {
+public enum statusTopic {
     ENVIADO,
     RECIBIDO,
     ANULADO
