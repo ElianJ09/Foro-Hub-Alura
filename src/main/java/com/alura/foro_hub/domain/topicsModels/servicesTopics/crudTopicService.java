@@ -1,5 +1,8 @@
 package com.alura.foro_hub.domain.topicsModels.servicesTopics;
 
+import com.alura.foro_hub.domain.repositories.topicRepository;
+import com.alura.foro_hub.domain.repositories.userRepository;
+import com.alura.foro_hub.domain.topicsModels.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +11,9 @@ import java.util.List;
 @Service
 public class crudTopicService {
     @Autowired
-    private TopicoRepository topicoRepository;
+    private topicRepository topicRepository;
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private userRepository userRepository;
     @Autowired
     List<ValidadorDeTopicos> validadores;
     /*
@@ -19,19 +22,19 @@ public class crudTopicService {
      */
 
     public DatosDetalleTopico crear(DatosCrearTopico datos){
-        if(datos.idUsuario()!=null&&!usuarioRepository.existsById(datos.idUsuario())){
+        if(datos.idUsuario()!=null&&!userRepository.existsById(datos.idUsuario())){
             throw new ValidacionDeIntegridad("Id de usuario no encontrado");
         }
         validadores.forEach(v->v.validar(datos));
-        var usuario = usuarioRepository.findById(datos.idUsuario()).get();
-        var topico = new Topico(
+        var usuario = userRepository.findById(datos.idUsuario()).get();
+        var topico = new Topic(
                 datos.titulo(),
                 datos.mensaje(),
                 datos.status(),
                 usuario,
                 datos.nombreCurso()
         );
-        topicoRepository.save(topico);
+        topicRepository.save(topico);
         return new DatosDetalleTopico(topico);
     }
 

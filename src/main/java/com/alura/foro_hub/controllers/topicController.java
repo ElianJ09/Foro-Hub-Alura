@@ -16,7 +16,7 @@ import java.net.URI;
 @RequestMapping("/topics")
 public class topicController {
     @Autowired
-    private CrudTopicService crudTopicService;
+    private crudTopicService crudTopicService;
 
     @PostMapping
     @Transactional

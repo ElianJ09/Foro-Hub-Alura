@@ -46,16 +46,4 @@ public class Topic {
         this.date_topic =LocalDateTime.now();
 
     }
-
-    public void updateData(DatosActualizarTopico datosActualizarTopico) {
-        if(datosActualizarTopico.title()!=null){
-            this.title = datosActualizarTopico.title();
-        }
-        if(datosActualizarTopico.message()!=null){
-            this.message = datosActualizarTopico.message();
-        }
-        if(datosActualizarTopico.course_name()!=null){
-            this.course_name = datosActualizarTopico.course_name();
-        }
-    }
 }

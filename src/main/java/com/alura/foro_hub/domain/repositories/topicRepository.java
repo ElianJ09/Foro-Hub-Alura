@@ -1,4 +1,4 @@
-package com.alura.foro_hub.domain.topicsModels.repositories;
+package com.alura.foro_hub.domain.repositories;
 
 import com.alura.foro_hub.domain.topicsModels.Topic;
 import org.springframework.data.domain.Page;
