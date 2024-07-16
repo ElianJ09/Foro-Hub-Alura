@@ -1,4 +1,4 @@
-package com.alura.foro_hub.domain.topicsModels.servicesTopics;
+package com.alura.foro_hub.domain.topicsModels;
 
 public record updateDataTopic(
         Long id,

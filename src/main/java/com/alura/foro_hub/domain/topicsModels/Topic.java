@@ -1,6 +1,5 @@
 package com.alura.foro_hub.domain.topicsModels;
 
-import com.alura.foro_hub.domain.topicsModels.servicesTopics.updateDataTopic;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
