@@ -1,12 +1,12 @@
 package com.alura.foro_hub.domain.topicsModels;
 
-import com.alura.foro_hub.domain.usersModels.User;
+import com.alura.foro_hub.domain.topicsModels.servicesTopics.updateDataTopic;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+import com.alura.foro_hub.domain.usersModels.User;
 import java.time.LocalDateTime;
 
 @Table(name = "topic")
@@ -35,16 +35,28 @@ public class Topic {
     public Topic(
             String title,
             String message,
-            statusTopic statusTopic_topic,
+            statusTopic statusTopic,
             User author,
             String course_name
     ){
         this.title = title;
         this.message = message;
-        this.statusTopic = statusTopic_topic;
+        this.statusTopic = statusTopic;
         this.author = author;
         this.course_name = course_name;
-        this.date_topic =LocalDateTime.now();
+        this.date_topic = LocalDateTime.now();
+    }
 
+
+    public void updateData(updateDataTopic updateDataTopic) {
+        if(updateDataTopic.title()!=null){
+            this.title = updateDataTopic.title();
+        }
+        if(updateDataTopic.message()!=null){
+            this.message = updateDataTopic.message();
+        }
+        if(updateDataTopic.course_name()!=null){
+            this.course_name = updateDataTopic.course_name();
+        }
     }
 }
