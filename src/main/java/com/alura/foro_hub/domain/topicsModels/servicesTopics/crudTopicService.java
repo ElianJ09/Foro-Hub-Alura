@@ -26,6 +26,7 @@ public class crudTopicService {
             throw new integrityValidation("User not found!");
         }
         validations.forEach(validation->validation.validate(data));
+        assert data.id() != null;
         var user = userRepository.findById(data.id()).get();
         var topic = new Topic(
                 data.title(),
