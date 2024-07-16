@@ -13,7 +13,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 @Service
-public class tokenService {
+public class tokenServiceAPI {
     @Value("${api.security.secret}")
     private String apiSecret;
     public String generateNewToken(User user){
