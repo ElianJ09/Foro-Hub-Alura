@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface topicRepository extends JpaRepository<Topic,Long> {
-    Boolean existsByTitleAndMensaje(String title, String message);
-    @Query("SELECT t FROM topic t WHERE FUNCTION('YEAR', t.date_topic) = :year")
+    Boolean existsByTitleAndMessage(String title, String message);
+    @Query("SELECT t FROM Topic t WHERE FUNCTION('YEAR', t.date_topic) = :year")
     Page<Topic> findByYear(@Param("year") int year, Pageable pageable);
 }
