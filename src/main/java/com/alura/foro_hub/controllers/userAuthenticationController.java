@@ -24,7 +24,7 @@ public class userAuthenticationController {
     @Autowired
     private tokenServiceAPI tokenService;
     @PostMapping
-    public ResponseEntity autenticarUsuario(@RequestBody @Valid userDataAuthentication dataUserAuthentication){
+    public ResponseEntity userAuthenticate(@RequestBody @Valid userDataAuthentication dataUserAuthentication){
         Authentication authToken = new UsernamePasswordAuthenticationToken(
                 dataUserAuthentication.username(),
                 dataUserAuthentication.secret());
